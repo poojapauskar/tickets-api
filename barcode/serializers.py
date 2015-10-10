@@ -6,6 +6,7 @@ from barcode.models import Barcode, LANGUAGE_CHOICES, STYLE_CHOICES
 
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import letter
 from reportlab.lib.units import mm
 #I"ll be generating code39 barcodes, others are available
 from reportlab.graphics.barcode import code39
@@ -49,7 +50,7 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
         image="image"+str(random.randint(100, 999))
         # generate a canvas (A4 in this case, size doesn"t really matter)
-        c=canvas.Canvas(image+".pdf",pagesize=A4)
+        c=canvas.Canvas(image+".pdf",pagesize=letter)
         # create a barcode object
         # (is not displayed yet)
         # The encode text is "123456789"
@@ -58,19 +59,19 @@ class BarcodeSerializer(serializers.ModelSerializer):
         barcode=code39.Extended39(barcode_string,barWidth=0.5*mm,barHeight=20*mm)
         # drawOn puts the barcode on the canvas at the specified coordinates
 
-        c.drawString(30, 200, "Ticket")
-        c.drawString(30, 180, "Vendor Id")
+        c.drawString(30, 500, "Ticket")
+        c.drawString(30, 480, "Vendor Id")
 
-        c.drawString(30, 160, validated_data.get(u'vendor_id'))
-        c.drawString(30, 140, "Price")
-        c.drawString(30, 120, validated_data.get(u'price'))
+        c.drawString(30, 460, validated_data.get(u'vendor_id'))
+        c.drawString(30, 440, "Price")
+        c.drawString(30, 420, validated_data.get(u'price'))
 
 
         barcode.drawOn(c,100*mm,100*mm)
 
 
-        c.drawString(30, 100, "Reference No")
-        c.drawString(30, 80, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
+        c.drawString(30, 400, "Reference No")
+        c.drawString(30, 380, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
         # now create the actual PDF
         c.showPage()
         c.save()
