@@ -59,24 +59,24 @@ class BarcodeSerializer(serializers.ModelSerializer):
         barcode=code39.Extended39(barcode_string,barWidth=0.5*mm,barHeight=20*mm)
         # drawOn puts the barcode on the canvas at the specified coordinates
 
-        c.setFillColorRGB(1,1,0) #choose your font colour
+       
         c.setFont("Helvetica", 30)
         c.drawString(200, 600, "Ticket")
 
-        c.setFillColorRGB(1,1,0) #choose your font colour
+        
         c.setFont("Helvetica", 20)
         c.drawString(200, 550, "Vendor Id "+validated_data.get(u'vendor_id'))
 
-        c.setFillColorRGB(1,1,0) #choose your font colour
+        
         c.setFont("Helvetica", 20)
-        c.drawString(200, 540, "Price "+validated_data.get(u'price'))
+        c.drawString(200, 530, "Price "+validated_data.get(u'price'))
 
 
         barcode.drawOn(c,100*mm,100*mm)
 
-        c.setFillColorRGB(1,1,0) #choose your font colour
+        
         c.setFont("Helvetica", 20)
-        c.drawString(200, 530, "Reference No "+validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
+        c.drawString(200, 510, "Reference No "+validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
         
         # now create the actual PDF
         c.showPage()
