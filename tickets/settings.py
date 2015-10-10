@@ -41,7 +41,6 @@ INSTALLED_APPS = (
     'barcode',
     'decode',
     'vendor_register',
-    'reportlab-2.5',
 )
 
 MIDDLEWARE_CLASSES = (
