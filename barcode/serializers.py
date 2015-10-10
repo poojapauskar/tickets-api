@@ -48,7 +48,7 @@ class BarcodeSerializer(serializers.ModelSerializer):
         objects= Barcode.objects.create(vendor_id=validated_data.get(u'vendor_id'),price=validated_data.get(u'price'),barcode=barcode,ref_no=ref_no)
 
         # generate a canvas (A4 in this case, size doesn"t really matter)
-        c=canvas.Canvas("/tmp/barcode.pdf",pagesize=A4)
+        c=canvas.Canvas(cloudinary.uploader.upload("barcode.pdf"),pagesize=A4)
         # create a barcode object
         # (is not displayed yet)
         # The encode text is "123456789"
@@ -65,8 +65,8 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
 
 
-        cloudinary.uploader.upload("c")
-        cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/c")
+        #cloudinary.uploader.upload("c")
+        #cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/c")
 
 
 
