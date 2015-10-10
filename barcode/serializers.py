@@ -15,6 +15,12 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+import json
+from django.http import HttpResponse
+response_data = {}
+response_data['result'] = 'error'
+response_data['message'] = 'Some error message'
+
 
 cloudinary.config( 
   cloud_name = "hjwxtjtff", 
@@ -65,14 +71,15 @@ class BarcodeSerializer(serializers.ModelSerializer):
         c.save()
 
 
+        public_id='id'+str(random.randint(100, 999))
 
+        cloudinary.uploader.upload(image+".pdf",public_id =public_id )
 
-        cloudinary.uploader.upload(image+".pdf",public_id = 'id'+str(random.randint(100, 999)))
-        
+        #link="http://res.cloudinary.com/hjwxtjtff/image/upload/"+public_id+".pdf
         
         #cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/barcode.pdf")
 
 
 
        
-        return objects
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
