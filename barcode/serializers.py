@@ -76,4 +76,4 @@ class BarcodeSerializer(serializers.ModelSerializer):
         objects= Barcode.objects.create(vendor_id=validated_data.get(u'vendor_id'),price=validated_data.get(u'price'),barcode=barcode1,ref_no=ref_no,link=link)
 
        
-        return objects.link
+        return objects
