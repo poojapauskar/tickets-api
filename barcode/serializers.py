@@ -67,8 +67,9 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
 
 
-        cloudinary.uploader.upload(image+".pdf",public_id = 'id'+str(random.randint(100, 999)))
-
+        #cloudinary.uploader.upload(image+".pdf",public_id = 'id'+str(random.randint(100, 999)))
+        cloudinary.utils.cloudinary_url(image+".pdf", width = 100, 
+                                height = 150, crop = "fill")
         
         #cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/barcode.pdf")
 
