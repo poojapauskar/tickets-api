@@ -25,7 +25,7 @@ cloudinary.config(
 class BarcodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Barcode
-        fields = ('pk', 'vendor_id', 'price','barcode','ref_no')    
+        fields = ('pk', 'vendor_id', 'price','barcode','ref_no','link')    
 
     def create(self, validated_data):
         """
@@ -40,12 +40,12 @@ class BarcodeSerializer(serializers.ModelSerializer):
         ref_string=str(random.randint(100, 999))
 
         ref_no =validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string
-        barcode=barcode_string
+        barcode1=barcode_string
         #Barcode.objects.filter(vendor_id=validated_data.get(u'vendor_id')).update(ref_no=validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
         #Barcode.objects.filter(vendor_id=validated_data.get(u'vendor_id')).update(barcode=barcode_string)
         
 
-        objects= Barcode.objects.create(vendor_id=validated_data.get(u'vendor_id'),price=validated_data.get(u'price'),barcode=barcode,ref_no=ref_no)
+        
 
         image="image"+str(random.randint(100, 999))
         # generate a canvas (A4 in this case, size doesn"t really matter)
@@ -69,11 +69,11 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
         cloudinary.uploader.upload(image+".pdf",public_id =public_id )
 
-        #link="http://res.cloudinary.com/hjwxtjtff/image/upload/"+public_id+".pdf
+        link="http://res.cloudinary.com/hjwxtjtff/image/upload/"+public_id+".pdf
         
         #cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/barcode.pdf")
 
-
+        objects= Barcode.objects.create(vendor_id=validated_data.get(u'vendor_id'),price=validated_data.get(u'price'),barcode=barcode1,ref_no=ref_no,link=link)
 
        
         return objects

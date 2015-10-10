@@ -16,6 +16,8 @@ class Barcode(models.Model):
 
  ref_no = models.CharField(blank=False, max_length=255,default='', editable=False)
  barcode =  models.CharField(blank=False, max_length=255,default='', editable=False)
+
+ link =  models.CharField(blank=False, max_length=255,default='', editable=False)
     
  class Meta:
   ordering = ('created',)
