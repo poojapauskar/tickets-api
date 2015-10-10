@@ -15,6 +15,13 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
+
+cloudinary.config( 
+  cloud_name = "hjwxtjtff", 
+  api_key = "782544682877441", 
+  api_secret = "sflE4k6jAD1AFkjn5GrPNS2S4qE" 
+)
+
 class BarcodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Barcode

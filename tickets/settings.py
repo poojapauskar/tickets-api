@@ -15,11 +15,6 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-cloudinary.config( 
-  cloud_name = "hjwxtjtff", 
-  api_key = "782544682877441", 
-  api_secret = "sflE4k6jAD1AFkjn5GrPNS2S4qE" 
-)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
