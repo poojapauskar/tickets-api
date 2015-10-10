@@ -15,12 +15,6 @@ import cloudinary
 import cloudinary.uploader
 import cloudinary.api
 
-import json
-from django.http import HttpResponse
-response_data = {}
-response_data['result'] = 'error'
-response_data['message'] = 'Some error message'
-
 
 cloudinary.config( 
   cloud_name = "hjwxtjtff", 
@@ -82,4 +76,4 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
 
        
-        return HttpResponse(json.dumps(response_data), content_type="application/json")
+        return objects
