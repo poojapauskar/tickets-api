@@ -51,6 +51,8 @@ class BarcodeSerializer(serializers.ModelSerializer):
         c.showPage()
         c.save()
 
+        cloudinary.uploader.upload("barcode.pdf")
+
 
 
        
