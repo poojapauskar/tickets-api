@@ -4,11 +4,11 @@ from random import randint
 from barcode.models import Barcode, LANGUAGE_CHOICES, STYLE_CHOICES
 
 
-from reportlab.pdfgen import canvas
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.units import mm
-#I"ll be generating code39 barcodes, others are available
-from reportlab.graphics.barcode import code39
+# from reportlab.pdfgen import canvas
+# from reportlab.lib.pagesizes import A4
+# from reportlab.lib.units import mm
+# #I"ll be generating code39 barcodes, others are available
+# from reportlab.graphics.barcode import code39
 
 class BarcodeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,20 +36,20 @@ class BarcodeSerializer(serializers.ModelSerializer):
         objects= Barcode.objects.create(vendor_id=validated_data.get(u'vendor_id'),price=validated_data.get(u'price'),barcode=barcode,ref_no=ref_no)
 
         # generate a canvas (A4 in this case, size doesn"t really matter)
-        c=canvas.Canvas("/tmp/barcode.pdf",pagesize=A4)
-        # create a barcode object
-        # (is not displayed yet)
-        # The encode text is "123456789"
-        # barHeight encodes how high the bars will be
-        # barWidth encodes how wide the "narrowest" barcode unit is
-        barcode=code39.Extended39(barcode_string,barWidth=0.5*mm,barHeight=20*mm)
-        # drawOn puts the barcode on the canvas at the specified coordinates
-        barcode.drawOn(c,100*mm,100*mm)
+        # c=canvas.Canvas("/tmp/barcode.pdf",pagesize=A4)
+        # # create a barcode object
+        # # (is not displayed yet)
+        # # The encode text is "123456789"
+        # # barHeight encodes how high the bars will be
+        # # barWidth encodes how wide the "narrowest" barcode unit is
+        # barcode=code39.Extended39(barcode_string,barWidth=0.5*mm,barHeight=20*mm)
+        # # drawOn puts the barcode on the canvas at the specified coordinates
+        # barcode.drawOn(c,100*mm,100*mm)
 
-        c.drawString(100, 100, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
-        # now create the actual PDF
-        c.showPage()
-        c.save()
+        # c.drawString(100, 100, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
+        # # now create the actual PDF
+        # c.showPage()
+        # c.save()
 
 
 
