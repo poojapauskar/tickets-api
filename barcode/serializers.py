@@ -10,6 +10,11 @@ from reportlab.lib.units import mm
 #I"ll be generating code39 barcodes, others are available
 from reportlab.graphics.barcode import code39
 
+
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 class BarcodeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Barcode
@@ -52,6 +57,7 @@ class BarcodeSerializer(serializers.ModelSerializer):
         c.save()
 
         cloudinary.uploader.upload("barcode.pdf")
+        cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/barcode.pdf")
 
 
 
