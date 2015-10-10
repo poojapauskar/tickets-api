@@ -57,9 +57,20 @@ class BarcodeSerializer(serializers.ModelSerializer):
         # barWidth encodes how wide the "narrowest" barcode unit is
         barcode=code39.Extended39(barcode_string,barWidth=0.5*mm,barHeight=20*mm)
         # drawOn puts the barcode on the canvas at the specified coordinates
+
+        c.fillText("Ticket",0,0);
+        c.fillText("Vendor Id",0,0);
+
+        c.drawString(0, 0, validated_data.get(u'vendor_id'))
+        c.fillText("Price",0,0);
+        c.drawString(0, 0, validated_data.get(u'price'))
+
+
         barcode.drawOn(c,100*mm,100*mm)
 
-        c.drawString(100, 100, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
+
+        c.fillText("Reference No.",0,0);
+        c.drawString(0, 0, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
         # now create the actual PDF
         c.showPage()
         c.save()
