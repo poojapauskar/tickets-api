@@ -58,18 +58,18 @@ class BarcodeSerializer(serializers.ModelSerializer):
         barcode=code39.Extended39(barcode_string,barWidth=0.5*mm,barHeight=20*mm)
         # drawOn puts the barcode on the canvas at the specified coordinates
 
-        c.fillText("Ticket",0,0);
-        c.fillText("Vendor Id",0,0);
+        c.drawString(0, 0, "Ticket")
+        c.drawString(0, 0, "Vendor Id")
 
         c.drawString(0, 0, validated_data.get(u'vendor_id'))
-        c.fillText("Price",0,0);
+        c.drawString(0, 0, "Price")
         c.drawString(0, 0, validated_data.get(u'price'))
 
 
         barcode.drawOn(c,100*mm,100*mm)
 
 
-        c.fillText("Reference No.",0,0);
+        c.drawString(0, 0, "Reference No")
         c.drawString(0, 0, validated_data.get(u'vendor_id').replace(validated_data.get(u'vendor_id')[:3], '')+""+ref_string)
         # now create the actual PDF
         c.showPage()
