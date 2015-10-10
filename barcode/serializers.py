@@ -49,7 +49,7 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
         image="image"+str(random.randint(100, 999))
         # generate a canvas (A4 in this case, size doesn"t really matter)
-        c=canvas.Canvas(image+".pdf",pagesize=A4)
+        c=canvas.Canvas("barcode.pdf",pagesize=A4)
         # create a barcode object
         # (is not displayed yet)
         # The encode text is "123456789"
@@ -68,9 +68,8 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
 
         #cloudinary.uploader.upload(image+".pdf",public_id = 'id'+str(random.randint(100, 999)))
-        cloudinary.utils.cloudinary_url(image+".pdf", width = 100, 
-                                height = 150, crop = "fill")
-        
+
+        cloudinary.CloudinaryImage("barcode.pdf").build_url(width = 100, height = 150, crop = 'fill')
         #cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/barcode.pdf")
 
 
