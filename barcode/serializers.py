@@ -9,6 +9,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 #I"ll be generating code39 barcodes, others are available
 from reportlab.graphics.barcode import code39
+from django.http import HttpResponse
 
 
 import cloudinary
