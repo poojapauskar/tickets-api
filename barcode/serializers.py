@@ -65,8 +65,8 @@ class BarcodeSerializer(serializers.ModelSerializer):
 
 
 
-        cloudinary.uploader.upload("c.pdf")
-        cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/c.pdf")
+        cloudinary.uploader.upload("c")
+        cloudinary.uploader.upload("https://ticket-api.herokuapp.com/barcode/c")
 
 
 
