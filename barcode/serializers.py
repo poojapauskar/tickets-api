@@ -48,7 +48,7 @@ class BarcodeSerializer(serializers.ModelSerializer):
         objects= Barcode.objects.create(vendor_id=validated_data.get(u'vendor_id'),price=validated_data.get(u'price'),barcode=barcode,ref_no=ref_no)
 
         # generate a canvas (A4 in this case, size doesn"t really matter)
-        c=canvas.Canvas("https://ticket-api.herokuapp.com/barcode/barcode.pdf",pagesize=A4)
+        c=canvas.Canvas("/barcode.pdf",pagesize=A4)
         # create a barcode object
         # (is not displayed yet)
         # The encode text is "123456789"
@@ -62,6 +62,7 @@ class BarcodeSerializer(serializers.ModelSerializer):
         # now create the actual PDF
         c.showPage()
         c.save()
+
 
 
 
