@@ -17,6 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 
 urlpatterns = [
+    url(r'^docs/', include('rest_framework_swagger.urls')),
     url(r'^', include('barcode.urls')),
     url(r'^', include('decode.urls')),
     url(r'^', include('vendor_register.urls')),

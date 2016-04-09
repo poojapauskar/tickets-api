@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'barcode',
     'decode',
     'vendor_register',
+    'rest_framework_swagger',
 )
 
 MIDDLEWARE_CLASSES = (
